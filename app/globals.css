@@ -1,0 +1,188 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Dark Luxury Palette */
+  --background: 14 14 14;
+  --foreground: 245 240 232;
+  --card: 22 22 22;
+  --card-foreground: 245 240 232;
+  --popover: 22 22 22;
+  --popover-foreground: 245 240 232;
+  --primary: 196 30 58;
+  --primary-foreground: 245 240 232;
+  --secondary: 22 22 22;
+  --secondary-foreground: 245 240 232;
+  --muted: 26 26 26;
+  --muted-foreground: 138 130 120;
+  --accent: 212 168 83;
+  --accent-foreground: 14 14 14;
+  --destructive: 196 30 58;
+  --destructive-foreground: 245 240 232;
+  --border: 38 38 38;
+  --input: 22 22 22;
+  --ring: 196 30 58;
+  --chart-1: 196 30 58;
+  --chart-2: 212 168 83;
+  --chart-3: 245 240 232;
+  --chart-4: 138 130 120;
+  --chart-5: 38 38 38;
+  --radius: 0.25rem;
+  --sidebar: 18 18 18;
+  --sidebar-foreground: 245 240 232;
+  --sidebar-primary: 196 30 58;
+  --sidebar-primary-foreground: 245 240 232;
+  --sidebar-accent: 212 168 83;
+  --sidebar-accent-foreground: 14 14 14;
+  --sidebar-border: 38 38 38;
+  --sidebar-ring: 196 30 58;
+}
+
+.dark {
+  --background: 14 14 14;
+  --foreground: 245 240 232;
+  --card: 22 22 22;
+  --card-foreground: 245 240 232;
+  --popover: 22 22 22;
+  --popover-foreground: 245 240 232;
+  --primary: 196 30 58;
+  --primary-foreground: 245 240 232;
+  --secondary: 22 22 22;
+  --secondary-foreground: 245 240 232;
+  --muted: 26 26 26;
+  --muted-foreground: 138 130 120;
+  --accent: 212 168 83;
+  --accent-foreground: 14 14 14;
+  --destructive: 196 30 58;
+  --destructive-foreground: 245 240 232;
+  --border: 38 38 38;
+  --input: 22 22 22;
+  --ring: 196 30 58;
+  --sidebar: 18 18 18;
+  --sidebar-foreground: 245 240 232;
+  --sidebar-primary: 196 30 58;
+  --sidebar-primary-foreground: 245 240 232;
+  --sidebar-accent: 212 168 83;
+  --sidebar-accent-foreground: 14 14 14;
+  --sidebar-border: 38 38 38;
+  --sidebar-ring: 196 30 58;
+}
+
+@theme inline {
+  --font-display: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
+  --font-sans: var(--font-dm-sans), 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'Courier New', monospace;
+  --color-background: rgb(var(--background) / <alpha-value>);
+  --color-foreground: rgb(var(--foreground) / <alpha-value>);
+  --color-card: rgb(var(--card) / <alpha-value>);
+  --color-card-foreground: rgb(var(--card-foreground) / <alpha-value>);
+  --color-popover: rgb(var(--popover) / <alpha-value>);
+  --color-popover-foreground: rgb(var(--popover-foreground) / <alpha-value>);
+  --color-primary: rgb(var(--primary) / <alpha-value>);
+  --color-primary-foreground: rgb(var(--primary-foreground) / <alpha-value>);
+  --color-secondary: rgb(var(--secondary) / <alpha-value>);
+  --color-secondary-foreground: rgb(var(--secondary-foreground) / <alpha-value>);
+  --color-muted: rgb(var(--muted) / <alpha-value>);
+  --color-muted-foreground: rgb(var(--muted-foreground) / <alpha-value>);
+  --color-accent: rgb(var(--accent) / <alpha-value>);
+  --color-accent-foreground: rgb(var(--accent-foreground) / <alpha-value>);
+  --color-destructive: rgb(var(--destructive) / <alpha-value>);
+  --color-destructive-foreground: rgb(var(--destructive-foreground) / <alpha-value>);
+  --color-border: rgb(var(--border) / <alpha-value>);
+  --color-input: rgb(var(--input) / <alpha-value>);
+  --color-ring: rgb(var(--ring) / <alpha-value>);
+  --color-chart-1: rgb(var(--chart-1) / <alpha-value>);
+  --color-chart-2: rgb(var(--chart-2) / <alpha-value>);
+  --color-chart-3: rgb(var(--chart-3) / <alpha-value>);
+  --color-chart-4: rgb(var(--chart-4) / <alpha-value>);
+  --color-chart-5: rgb(var(--chart-5) / <alpha-value>);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: rgb(var(--sidebar) / <alpha-value>);
+  --color-sidebar-foreground: rgb(var(--sidebar-foreground) / <alpha-value>);
+  --color-sidebar-primary: rgb(var(--sidebar-primary) / <alpha-value>);
+  --color-sidebar-primary-foreground: rgb(var(--sidebar-primary-foreground) / <alpha-value>);
+  --color-sidebar-accent: rgb(var(--sidebar-accent) / <alpha-value>);
+  --color-sidebar-accent-foreground: rgb(var(--sidebar-accent-foreground) / <alpha-value>);
+  --color-sidebar-border: rgb(var(--sidebar-border) / <alpha-value>);
+  --color-sidebar-ring: rgb(var(--sidebar-ring) / <alpha-value>);
+}
+
+/* ── Keyframe Animations ─────────────────────────────────────────── */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(196, 30, 58, 0.3), 0 0 40px rgba(196, 30, 58, 0.08);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(196, 30, 58, 0.6), 0 0 80px rgba(196, 30, 58, 0.2);
+  }
+}
+
+@keyframes gradientDrift {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes slowBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+/* ── Custom Utilities ────────────────────────────────────────────── */
+
+@layer utilities {
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .animate-glow-pulse {
+    animation: glowPulse 3s ease-in-out infinite;
+  }
+
+  .animate-gradient-drift {
+    animation: gradientDrift 7s ease-in-out infinite;
+  }
+
+  .animate-slow-bounce {
+    animation: slowBounce 2.5s ease-in-out infinite;
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(taskkill /F /IM node.exe 2>/dev/null; echo \"done\")",
+      "Bash(ls:*)"
+    ]
+  }
+}
