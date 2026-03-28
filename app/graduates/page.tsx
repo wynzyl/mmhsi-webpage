@@ -1,18 +1,8 @@
-export default function Graduates() {
-  const graduates = [
-    { id: 1, name: 'Alex Torres', university: 'University of the Philippines Diliman', course: 'Computer Science', batch: 2023 },
-    { id: 2, name: 'Jessica Reyes', university: 'Ateneo de Manila University', course: 'Business Administration', batch: 2023 },
-    { id: 3, name: 'Marco Villanueva', university: 'De La Salle University', course: 'Civil Engineering', batch: 2023 },
-    { id: 4, name: 'Sofia Mendez', university: 'University of Santo Tomas', course: 'Medicine', batch: 2023 },
-    { id: 5, name: 'Ricardo Santos', university: 'Polytechnic University of the Philippines', course: 'Information Technology', batch: 2023 },
-    { id: 6, name: 'Maria Cruz', university: 'Miriam College', course: 'Psychology', batch: 2023 },
-    { id: 7, name: 'Daniel Lopez', university: 'Philippine Normal University', course: 'Education', batch: 2023 },
-    { id: 8, name: 'Isabella Garcia', university: 'University of Asia and the Pacific', course: 'Economics', batch: 2023 },
-    { id: 9, name: 'Thomas Rodriguez', university: 'Mapúa University', course: 'Mechanical Engineering', batch: 2022 },
-    { id: 10, name: 'Amanda Fernandez', university: 'Far Eastern University', course: 'Architecture', batch: 2022 },
-    { id: 11, name: 'Christopher Tan', university: 'University of the Philippines Los Baños', course: 'Agriculture', batch: 2022 },
-    { id: 12, name: 'Michelle Wong', university: 'Chinese University of Hong Kong', course: 'Nursing', batch: 2022 },
-  ];
+import { db } from '@/db';
+import { graduates as graduatesTable } from '@/db/schema';
+
+export default async function Graduates() {
+  const graduates = await db.select().from(graduatesTable).orderBy(graduatesTable.id);
 
   const stats = [
     { value: '98%', label: 'Graduates in Top Universities' },

@@ -1,48 +1,8 @@
-export default function Activities() {
-  const activities = [
-    {
-      id: 1,
-      title: 'Annual School Press Conference',
-      category: 'Press Conference',
-      date: 'March 28, 2026',
-      description: 'Students showcase their journalism skills and present news stories from around the school and community.',
-    },
-    {
-      id: 2,
-      title: 'Interscholastic Sports Tournament',
-      category: 'Sports',
-      date: 'April 15, 2026',
-      description: 'Annual competition featuring basketball, volleyball, badminton, and track and field events.',
-    },
-    {
-      id: 3,
-      title: 'Regional Math and Science Olympiad',
-      category: 'Math & Science',
-      date: 'May 10, 2026',
-      description: 'Our students compete against peers from other schools in rigorous math and science challenges.',
-    },
-    {
-      id: 4,
-      title: 'Student Leadership Summit',
-      category: 'Events',
-      date: 'March 20, 2026',
-      description: 'Forum bringing together student leaders to discuss school improvement and community engagement initiatives.',
-    },
-    {
-      id: 5,
-      title: 'Science and Innovation Fair',
-      category: 'Math & Science',
-      date: 'May 25, 2026',
-      description: 'Students present research projects and innovative solutions to real-world problems.',
-    },
-    {
-      id: 6,
-      title: 'Sports Day Championships',
-      category: 'Sports',
-      date: 'April 8, 2026',
-      description: 'Inter-class competition promoting fitness, teamwork, and school spirit among all students.',
-    },
-  ];
+import { db } from '@/db';
+import { activities as activitiesTable } from '@/db/schema';
+
+export default async function Activities() {
+  const activities = await db.select().from(activitiesTable).orderBy(activitiesTable.id);
 
   const categories = [
     { name: 'Press Conference', count: '2' },

@@ -1,56 +1,9 @@
 import Link from 'next/link';
+import { db } from '@/db';
+import { alumni as alumniTable } from '@/db/schema';
 
-export default function AlumniPage() {
-  const successStories = [
-    {
-      name: 'Maria Santos',
-      batch: '2018',
-      university: 'University of the Philippines - Diliman',
-      program: 'BS Computer Science',
-      achievement: 'Valedictorian, Google Internship Recipient',
-      story: 'From excelling in our STEM programs to leading tech innovation projects, Maria has become a role model for students pursuing computer science.',
-    },
-    {
-      name: 'Juan Dela Cruz',
-      batch: '2019',
-      university: 'De La Salle University',
-      program: 'BS Medical Science',
-      achievement: "Dean's List, Medical Aptitude Award",
-      story: "Juan's dedication to science and community service prepared him well for his medical studies and aspirations to serve underserved communities.",
-    },
-    {
-      name: 'Anna Reyes',
-      batch: '2017',
-      university: 'Ateneo de Manila University',
-      program: 'BS Engineering',
-      achievement: "President's List, Engineering Excellence Award",
-      story: 'Through our rigorous curriculum and hands-on learning, Anna developed strong problem-solving skills that have made her an outstanding engineer.',
-    },
-    {
-      name: 'Carlos Mendoza',
-      batch: '2020',
-      university: 'Philippine Science High School',
-      program: 'Advanced Science Program',
-      achievement: 'Science Olympiad Finalist, Scholarship Awardee',
-      story: "Carlos's passion for sciences, nurtured through our advanced programs, led him to pursue higher studies at the country's premier science school.",
-    },
-    {
-      name: 'Isabella Torres',
-      batch: '2019',
-      university: 'Miriam College',
-      program: 'BS Business Administration',
-      achievement: 'Cum Laude, Entrepreneurship Award',
-      story: "Isabella's leadership experiences as class president translated into successful business ventures while still in college.",
-    },
-    {
-      name: 'Marco Villanueva',
-      batch: '2018',
-      university: 'Far Eastern University',
-      program: 'BS Architecture',
-      achievement: "Design Competition Winner, Dean's List",
-      story: 'The creative foundation fostered at Merryland enabled Marco to excel in architectural design and win multiple prestigious competitions.',
-    },
-  ];
+export default async function AlumniPage() {
+  const successStories = await db.select().from(alumniTable).orderBy(alumniTable.id);
 
   const stats = [
     { number: '95%', label: 'College Enrollment Rate' },

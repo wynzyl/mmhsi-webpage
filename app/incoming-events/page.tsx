@@ -1,78 +1,8 @@
-export default function IncomingEvents() {
-  const events = [
-    {
-      id: 1,
-      title: 'Student Leadership Summit',
-      date: 'March 20, 2026',
-      time: '9:00 AM – 3:00 PM',
-      location: 'School Auditorium',
-      description: 'A day-long summit bringing together student leaders to discuss school improvement initiatives and community engagement.',
-      category: 'Educational',
-    },
-    {
-      id: 2,
-      title: 'Annual School Press Conference',
-      date: 'March 28, 2026',
-      time: '2:00 PM – 5:00 PM',
-      location: 'Main Hall',
-      description: 'Students showcase their journalism work and present news stories. Guests and media welcome.',
-      category: 'Cultural',
-    },
-    {
-      id: 3,
-      title: 'Interscholastic Sports Tournament',
-      date: 'April 8–15, 2026',
-      time: '7:00 AM – 5:00 PM',
-      location: 'Sports Complex',
-      description: 'Annual inter-class sports competition featuring basketball, volleyball, badminton, and track and field.',
-      category: 'Sports',
-    },
-    {
-      id: 4,
-      title: 'Career and Scholarship Fair',
-      date: 'April 20, 2026',
-      time: '1:00 PM – 5:00 PM',
-      location: 'Auditorium & Grounds',
-      description: 'Meet representatives from top universities and companies offering scholarships and internship opportunities.',
-      category: 'Career',
-    },
-    {
-      id: 5,
-      title: 'Regional Math and Science Olympiad',
-      date: 'May 10, 2026',
-      time: '8:00 AM – 4:00 PM',
-      location: 'Science Building',
-      description: 'Our students compete against peers from other schools in challenging math and science competitions.',
-      category: 'Academic',
-    },
-    {
-      id: 6,
-      title: 'Science and Innovation Fair',
-      date: 'May 25–26, 2026',
-      time: '9:00 AM – 6:00 PM',
-      location: 'Campus Grounds',
-      description: 'Students present research projects and innovative solutions. Open to the public.',
-      category: 'Academic',
-    },
-    {
-      id: 7,
-      title: 'Annual Graduation Ceremony',
-      date: 'June 15, 2026',
-      time: '9:00 AM – 12:00 PM',
-      location: 'School Auditorium',
-      description: 'Celebrate our graduating class as they receive their diplomas and embark on new journeys.',
-      category: 'Celebration',
-    },
-    {
-      id: 8,
-      title: 'Parent-Teacher Conference',
-      date: 'April 1–3, 2026',
-      time: '2:00 PM – 6:00 PM',
-      location: 'Classroom Block',
-      description: 'Scheduled meetings between parents and teachers to discuss student progress and development.',
-      category: 'Educational',
-    },
-  ];
+import { db } from '@/db';
+import { events as eventsTable } from '@/db/schema';
+
+export default async function IncomingEvents() {
+  const events = await db.select().from(eventsTable).orderBy(eventsTable.id);
 
   const quickStats = [
     { value: String(events.length), label: 'Scheduled Events' },

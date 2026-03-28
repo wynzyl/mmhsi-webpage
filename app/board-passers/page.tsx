@@ -1,50 +1,9 @@
-'use client';
-
 import Image from 'next/image';
+import { db } from '@/db';
+import { boardPassers as boardPassersTable } from '@/db/schema';
 
-export default function BoardPassers() {
-  const passers = [
-    {
-      id: 1,
-      name: 'Engr. Nathaniel Ydnar C. Torres',
-      exam: 'Civil Engineering Licensure Examination',
-      year: 2025,
-      class: 'Junior High School Class of 2017',
-      image: '/board-passers/passer-1.jpg',
-    },
-    {
-      id: 2,
-      name: 'Juliane Marie Z. Alvarez, RN',
-      exam: 'Nursing Licensure Examination',
-      year: 2025,
-      class: 'Junior High School Class of 2019',
-      image: '/board-passers/passer-2.jpg',
-    },
-    {
-      id: 3,
-      name: 'David Anthony L. Ballad, RN',
-      exam: 'Nursing Licensure Examination',
-      year: 2025,
-      class: 'Junior High School Class of 2017',
-      image: '/board-passers/passer-3.jpg',
-    },
-    {
-      id: 4,
-      name: 'Rizza Mae C. Martin, RN',
-      exam: 'Nursing Licensure Examination',
-      year: 2025,
-      class: 'Grade 8 Class of 2014',
-      image: '/board-passers/passer-4.jpg',
-    },
-    {
-      id: 5,
-      name: 'Richard B. Rincuraya, RPh',
-      exam: 'Pharmacists Licensure Examination',
-      year: 2025,
-      class: 'Junior High School Class of 2019',
-      image: '/board-passers/passer-5.jpg',
-    },
-  ];
+export default async function BoardPassers() {
+  const passers = await db.select().from(boardPassersTable).orderBy(boardPassersTable.id);
 
   const stats = [
     { number: '85%', label: 'Board Exam Pass Rate' },

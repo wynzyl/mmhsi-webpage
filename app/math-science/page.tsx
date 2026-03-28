@@ -1,68 +1,9 @@
 import Image from 'next/image';
+import { db } from '@/db';
+import { mathScience as mathScienceTable } from '@/db/schema';
 
-export default function MathScience() {
-  const achievements = [
-    {
-      id: 1,
-      title: 'Quiz Bee 8 – Group Category',
-      participants: 'Madriaga, Zyraine Zea & Neri, Zion Gregory',
-      award: 'Third Place',
-      level: 'Secondary Level',
-      date: 'March 7, 2026',
-      category: 'Quiz Bee',
-      image: '/math-science/achievement-1.jpg',
-    },
-    {
-      id: 2,
-      title: 'Quiz Bee 8 – Individual Category',
-      participants: 'Neri, Zion Gregory',
-      award: 'Fourth Place',
-      level: 'Secondary Level',
-      date: 'March 7, 2026',
-      category: 'Quiz Bee',
-      image: '/math-science/achievement-2.jpg',
-    },
-    {
-      id: 3,
-      title: 'Quiz Bee SHS – Individual Category',
-      participants: 'Egusquiza, Meyshea',
-      award: 'Fifth Place',
-      level: 'Secondary Level',
-      date: 'March 7, 2026',
-      category: 'Quiz Bee',
-      image: '/math-science/achievement-3.jpg',
-    },
-    {
-      id: 4,
-      title: 'Quiz Bee 6 – Team Category',
-      participants: 'Gandia, Rhylee Dane & Lalimarmo, Kim Jaedon',
-      award: 'Fifth Place',
-      level: 'Elementary Level',
-      date: 'March 6, 2026',
-      category: 'Quiz Bee',
-      image: '/math-science/achievement-4.jpg',
-    },
-    {
-      id: 5,
-      title: "Rubik's Cube 3x3 – Grade 10",
-      participants: 'Adsuara, Adrian',
-      award: 'Third Place',
-      level: 'Secondary Level',
-      date: 'March 7, 2026',
-      category: 'Speed Solving',
-      image: '/math-science/achievement-5.jpg',
-    },
-    {
-      id: 6,
-      title: 'Quiz Bee 7 – Team Category',
-      participants: 'Maristela, Franchesca Fiona & Sayson, Jedejah Wilona',
-      award: 'Third Place',
-      level: 'Secondary Level',
-      date: 'March 7, 2026',
-      category: 'Quiz Bee',
-      image: '/math-science/achievement-6.jpg',
-    },
-  ];
+export default async function MathScience() {
+  const achievements = await db.select().from(mathScienceTable).orderBy(mathScienceTable.id);
 
   const stats = [
     { number: '6', label: 'Total Winners', sub: '2026 Academic Year' },

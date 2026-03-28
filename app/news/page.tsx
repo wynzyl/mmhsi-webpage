@@ -1,62 +1,8 @@
-export default function NewsPage() {
-  const news = [
-    {
-      id: 1,
-      title: 'Merryland Wins National Science Olympiad Championship',
-      date: 'March 10, 2024',
-      category: 'Achievement',
-      excerpt: 'Our science team clinched the top prize at the National Science Olympiad, showcasing the excellence of our STEM program.',
-    },
-    {
-      id: 2,
-      title: 'New Modern Science Laboratory Opened',
-      date: 'February 28, 2024',
-      category: 'Infrastructure',
-      excerpt: 'We are proud to announce the opening of our state-of-the-art science laboratory equipped with the latest technology.',
-    },
-    {
-      id: 3,
-      title: 'Board Examination Results Released — 95% Pass Rate Achieved',
-      date: 'February 15, 2024',
-      category: 'Results',
-      excerpt: 'Merryland celebrates exceptional results with 95% of our test-takers passing the board exams on their first attempt.',
-    },
-    {
-      id: 4,
-      title: 'Sports Festival 2024 — Merryland Dominates',
-      date: 'February 5, 2024',
-      category: 'Sports',
-      excerpt: 'Our athletes showed remarkable performance across multiple sporting events at the inter-school sports festival.',
-    },
-    {
-      id: 5,
-      title: 'International Exchange Program Launched',
-      date: 'January 28, 2024',
-      category: 'Programs',
-      excerpt: 'Merryland has established partnerships with schools in three countries to facilitate student cultural exchange programs.',
-    },
-    {
-      id: 6,
-      title: 'Environmental Sustainability Initiative Launched',
-      date: 'January 15, 2024',
-      category: 'Environment',
-      excerpt: 'We are launching a comprehensive environmental sustainability program to make our campus carbon-neutral by 2030.',
-    },
-    {
-      id: 7,
-      title: 'Top Graduates Share Success Stories at Alumni Night',
-      date: 'January 8, 2024',
-      category: 'Alumni',
-      excerpt: 'Recent alumni return to inspire current students with their journey to success in various fields and industries.',
-    },
-    {
-      id: 8,
-      title: 'Parent-Teacher Symposium Strengthens School-Family Partnership',
-      date: 'December 28, 2023',
-      category: 'Community',
-      excerpt: 'A successful event bringing parents and educators together to discuss student development and school initiatives.',
-    },
-  ];
+import { db } from '@/db';
+import { news as newsTable } from '@/db/schema';
+
+export default async function NewsPage() {
+  const news = await db.select().from(newsTable).orderBy(newsTable.id);
 
   const categories = ['All', 'Achievement', 'Infrastructure', 'Results', 'Sports', 'Programs', 'Environment', 'Alumni', 'Community'];
 
