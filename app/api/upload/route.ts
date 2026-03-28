@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { writeFile, mkdir } from 'fs/promises'
-import { join } from 'path'
+import { put } from '@vercel/blob'
 import { randomUUID } from 'crypto'
 
 const VALID_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
@@ -22,15 +21,11 @@ export async function POST(req: NextRequest) {
     }
 
     const ext = file.name.split('.').pop()?.toLowerCase() ?? 'jpg'
-    const filename = `${randomUUID()}.${ext}`
-    const uploadDir = join(process.cwd(), 'public', 'uploads', collection)
+    const filename = `${collection}/${randomUUID()}.${ext}`
 
-    await mkdir(uploadDir, { recursive: true })
+    const blob = await put(filename, file, { access: 'public' })
 
-    const bytes = await file.arrayBuffer()
-    await writeFile(join(uploadDir, filename), Buffer.from(bytes))
-
-    return NextResponse.json({ url: `/uploads/${collection}/${filename}` })
+    return NextResponse.json({ url: blob.url })
   } catch (err) {
     console.error('[upload]', err)
     return NextResponse.json({ error: 'Upload failed' }, { status: 500 })
