@@ -1,6 +1,8 @@
 import { db } from '@/db';
 import { news as newsTable } from '@/db/schema';
 
+export const dynamic = 'force-dynamic';
+
 export default async function NewsPage() {
   const news = await db.select().from(newsTable).orderBy(newsTable.id);
 

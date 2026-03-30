@@ -1,6 +1,8 @@
 import { db } from '@/db';
 import { graduates as graduatesTable } from '@/db/schema';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Graduates() {
   const graduates = await db.select().from(graduatesTable).orderBy(graduatesTable.id);
 

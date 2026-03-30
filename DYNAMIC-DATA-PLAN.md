@@ -52,7 +52,7 @@ components/
     page-header.tsx
     section-header.tsx
     stats-bar.tsx
-middleware.ts          ← Protects /admin/* routes via cookie
+proxy.ts          ← Protects /admin/* routes via cookie
 drizzle.config.ts      ← Drizzle Kit config
 .env.local             ← DATABASE_URL, ADMIN_PASSWORD
 ```

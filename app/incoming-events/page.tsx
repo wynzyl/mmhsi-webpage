@@ -1,6 +1,8 @@
 import { db } from '@/db';
 import { events as eventsTable } from '@/db/schema';
 
+export const dynamic = 'force-dynamic';
+
 export default async function IncomingEvents() {
   const events = await db.select().from(eventsTable).orderBy(eventsTable.id);
 

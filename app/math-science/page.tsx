@@ -2,6 +2,8 @@ import Image from 'next/image';
 import { db } from '@/db';
 import { mathScience as mathScienceTable } from '@/db/schema';
 
+export const dynamic = 'force-dynamic';
+
 export default async function MathScience() {
   const achievements = await db.select().from(mathScienceTable).orderBy(mathScienceTable.id);
 

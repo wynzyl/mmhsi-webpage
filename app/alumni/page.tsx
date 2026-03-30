@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { db } from '@/db';
 import { alumni as alumniTable } from '@/db/schema';
 
+export const dynamic = 'force-dynamic';
+
 export default async function AlumniPage() {
   const successStories = await db.select().from(alumniTable).orderBy(alumniTable.id);
 

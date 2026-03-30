@@ -12,6 +12,8 @@ import { createGraduate, updateGraduate, deleteGraduate } from '@/actions/gradua
 import { createEvent, updateEvent, deleteEvent } from '@/actions/events'
 import { createNews, updateNews, deleteNews } from '@/actions/news'
 
+export const dynamic = 'force-dynamic'
+
 const ACTIONS_MAP = {
   'board-passers': { create: createBoardPasser, update: updateBoardPasser, delete: deleteBoardPasser },
   'math-science': { create: createAchievement, update: updateAchievement, delete: deleteAchievement },

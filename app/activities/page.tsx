@@ -1,6 +1,8 @@
 import { db } from '@/db';
 import { activities as activitiesTable } from '@/db/schema';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Activities() {
   const activities = await db.select().from(activitiesTable).orderBy(activitiesTable.id);
 

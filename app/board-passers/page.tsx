@@ -2,6 +2,8 @@ import Image from 'next/image';
 import { db } from '@/db';
 import { boardPassers as boardPassersTable } from '@/db/schema';
 
+export const dynamic = 'force-dynamic';
+
 export default async function BoardPassers() {
   const passers = await db.select().from(boardPassersTable).orderBy(boardPassersTable.id);
 

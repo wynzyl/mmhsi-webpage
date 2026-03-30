@@ -4,6 +4,8 @@ import { count } from 'drizzle-orm'
 import Link from 'next/link'
 import { logout } from '@/actions/auth'
 
+export const dynamic = 'force-dynamic'
+
 async function getCounts() {
   const [bp] = await db.select({ count: count() }).from(boardPassers)
   const [ms] = await db.select({ count: count() }).from(mathScience)
