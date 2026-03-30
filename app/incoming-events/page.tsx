@@ -1,5 +1,8 @@
 import { db } from '@/db';
 import { events as eventsTable } from '@/db/schema';
+import { PageHeader } from '@/components/ui/page-header';
+import { SectionHeader } from '@/components/ui/section-header';
+import { StatsBar } from '@/components/ui/stats-bar';
 
 export const dynamic = 'force-dynamic';
 
@@ -7,10 +10,10 @@ export default async function IncomingEvents() {
   const events = await db.select().from(eventsTable).orderBy(eventsTable.id);
 
   const quickStats = [
-    { value: String(events.length), label: 'Scheduled Events' },
-    { value: '5', label: 'Categories' },
-    { value: '75+', label: 'Expected Participants' },
-    { value: 'Open', label: 'Registration Status' },
+    { number: String(events.length), label: 'Scheduled Events' },
+    { number: '5', label: 'Categories' },
+    { number: '75+', label: 'Expected Participants' },
+    { number: 'Open', label: 'Registration Status' },
   ];
 
   const categories = [
@@ -34,54 +37,18 @@ export default async function IncomingEvents() {
   return (
     <main className="flex flex-col bg-[#0E0E0E] text-[#F5F0E8]">
 
-      {/* Page Header */}
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden border-b border-white/[0.04]">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse 70% 50% at 50% -10%, rgba(196,30,58,0.12) 0%, transparent 70%)' }}
-        />
-        <div className="relative max-w-7xl mx-auto">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="block w-5 h-px bg-[#C41E3A]" />
-            <span className="text-[10px] tracking-[0.3em] uppercase text-[#D4A853] font-sans">Calendar</span>
-          </div>
-          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-light text-[#F5F0E8] leading-[0.95] mb-4">
-            Incoming Events
-          </h1>
-          <p className="font-display text-xl italic text-[#F5F0E8]/45 font-light">
-            Mark your calendars for exciting events at Merryland
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        badge="Calendar"
+        title="Incoming Events"
+        subtitle="Mark your calendars for exciting events at Merryland"
+      />
 
-      {/* Quick Stats */}
-      <section className="bg-[#161616] border-b border-white/[0.04] py-14 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4">
-          {quickStats.map((stat, i) => (
-            <div key={i} className={`text-center px-6 py-6 ${i < 3 ? 'border-r border-[#C41E3A]/15' : ''}`}>
-              <div className="font-display text-4xl md:text-5xl font-light text-[#D4A853] mb-2 leading-none">
-                {stat.value}
-              </div>
-              <div className="text-[9px] text-[#F5F0E8]/35 tracking-[0.25em] uppercase font-sans">
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <StatsBar stats={quickStats} />
 
       {/* Events List */}
       <section className="py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-start gap-6 mb-16">
-            <span className="font-display text-7xl font-light text-[#C41E3A]/15 leading-none select-none mt-1">01</span>
-            <div>
-              <p className="text-[10px] text-[#D4A853] tracking-[0.3em] uppercase font-sans mb-2">Schedule</p>
-              <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#F5F0E8] leading-tight">
-                Scheduled Events
-              </h2>
-            </div>
-          </div>
+          <SectionHeader number="01" tag="Schedule" title="Scheduled Events" />
 
           <div className="space-y-px bg-white/[0.04]">
             {events.map((event, i) => (
@@ -141,15 +108,7 @@ export default async function IncomingEvents() {
       {/* Event Categories */}
       <section className="bg-[#121212] py-24 px-4 sm:px-6 lg:px-8 border-t border-white/[0.04]">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-start gap-6 mb-16">
-            <span className="font-display text-7xl font-light text-[#C41E3A]/15 leading-none select-none mt-1">02</span>
-            <div>
-              <p className="text-[10px] text-[#D4A853] tracking-[0.3em] uppercase font-sans mb-2">Types</p>
-              <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#F5F0E8] leading-tight">
-                Event Categories
-              </h2>
-            </div>
-          </div>
+          <SectionHeader number="02" tag="Types" title="Event Categories" />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {categories.map((cat, i) => (

@@ -1,5 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { PageHeader } from '@/components/ui/page-header';
+import { SectionHeader } from '@/components/ui/section-header';
+import { StatsBar } from '@/components/ui/stats-bar';
 
 export default function AboutPage() {
   const programs = [
@@ -42,25 +45,11 @@ export default function AboutPage() {
   return (
     <main className="flex flex-col bg-[#0E0E0E] text-[#F5F0E8]">
 
-      {/* Page Header */}
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden border-b border-white/[0.04]">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse 70% 50% at 50% -10%, rgba(196,30,58,0.12) 0%, transparent 70%)' }}
-        />
-        <div className="relative max-w-7xl mx-auto">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="block w-5 h-px bg-[#C41E3A]" />
-            <span className="text-[10px] tracking-[0.3em] uppercase text-[#D4A853] font-sans">Our Story</span>
-          </div>
-          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-light text-[#F5F0E8] leading-[0.95] mb-4">
-            About Our School
-          </h1>
-          <p className="font-display text-xl italic text-[#F5F0E8]/45 font-light">
-            Building Excellence, Creating Futures
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        badge="Our Story"
+        title="About Our School"
+        subtitle="Building Excellence, Creating Futures"
+      />
 
       {/* School Overview */}
       <section className="py-24 px-4 sm:px-6 lg:px-8">
@@ -104,32 +93,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Stats Bar */}
-      <section className="bg-[#161616] border-y border-white/[0.04] py-14 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4">
-          {achievements.map((item, i) => (
-            <div key={i} className={`text-center px-6 py-6 ${i < 3 ? 'border-r border-[#C41E3A]/15' : ''}`}>
-              <div className="font-display text-4xl md:text-5xl font-light text-[#D4A853] mb-2 leading-none">
-                {item.number}
-              </div>
-              <div className="text-[9px] text-[#F5F0E8]/35 tracking-[0.25em] uppercase font-sans">
-                {item.label}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <StatsBar stats={achievements} />
 
       {/* Programs */}
       <section className="py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-start gap-6 mb-16">
-            <span className="font-display text-7xl font-light text-[#C41E3A]/15 leading-none select-none mt-1">02</span>
-            <div>
-              <p className="text-[10px] text-[#D4A853] tracking-[0.3em] uppercase font-sans mb-2">Academic Programs</p>
-              <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#F5F0E8] leading-tight">Our Programs</h2>
-            </div>
-          </div>
+          <SectionHeader number="02" tag="Academic Programs" title="Our Programs" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {programs.map((program, i) => (
               <div
@@ -149,13 +118,7 @@ export default function AboutPage() {
       {/* Core Values */}
       <section className="bg-[#121212] py-24 px-4 sm:px-6 lg:px-8 border-t border-white/[0.04]">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-start gap-6 mb-16">
-            <span className="font-display text-7xl font-light text-[#C41E3A]/15 leading-none select-none mt-1">03</span>
-            <div>
-              <p className="text-[10px] text-[#D4A853] tracking-[0.3em] uppercase font-sans mb-2">Principles</p>
-              <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#F5F0E8] leading-tight">Our Core Values</h2>
-            </div>
-          </div>
+          <SectionHeader number="03" tag="Principles" title="Our Core Values" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {coreValues.map((value, i) => (
               <div key={i} className="bg-[#0E0E0E] border border-white/[0.05] border-l-[3px] border-l-[#C41E3A]/60 p-8">
