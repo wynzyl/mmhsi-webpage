@@ -1,22 +1,16 @@
 'use client'
 import { useState } from 'react'
 import { login } from '@/actions/auth'
+import { useFormSubmit } from '@/hooks/use-form-submit'
+import { ADMIN_INPUT, ADMIN_BTN_PRIMARY } from '@/lib/styles'
 
 export default function AdminLogin() {
   const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
+  const { run, loading, error } = useFormSubmit()
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    setError('')
-    setLoading(true)
-    try {
-      await login(password)
-    } catch {
-      setError('Invalid password')
-      setLoading(false)
-    }
+    await run(() => login(password))
   }
 
   return (
@@ -42,7 +36,7 @@ export default function AdminLogin() {
               onChange={e => setPassword(e.target.value)}
               required
               autoFocus
-              className="w-full bg-[#161616] border border-white/[0.07] text-[#F5F0E8] text-[13px] px-4 py-3 font-sans focus:outline-none focus:border-[#C41E3A]/40"
+              className={ADMIN_INPUT}
             />
           </div>
 
@@ -53,7 +47,7 @@ export default function AdminLogin() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 bg-[#C41E3A] text-[#F5F0E8] text-[11px] tracking-[0.25em] uppercase font-sans hover:bg-[#a01830] transition-colors disabled:opacity-50"
+            className={`w-full py-3 ${ADMIN_BTN_PRIMARY}`}
           >
             {loading ? 'Signing in…' : 'Sign In'}
           </button>

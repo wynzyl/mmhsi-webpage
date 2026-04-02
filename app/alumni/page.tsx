@@ -4,6 +4,7 @@ import { alumni as alumniTable } from '@/db/schema';
 import { PageHeader } from '@/components/ui/page-header';
 import { SectionHeader } from '@/components/ui/section-header';
 import { StatsBar } from '@/components/ui/stats-bar';
+import { CTASection } from '@/components/ui/cta-section';
 
 export const dynamic = 'force-dynamic';
 
@@ -108,26 +109,17 @@ export default async function AlumniPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-[#C41E3A] py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        <div className="absolute inset-0 [background:linear-gradient(135deg,#A8182F_0%,#C41E3A_100%)]" />
-        <div className="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-white/[0.04]" />
-        <div className="relative max-w-3xl mx-auto text-center">
-          <h2 className="font-display text-5xl md:text-6xl font-light text-[#F5F0E8] leading-tight mb-6">
-            Be Part of Our<br />
-            <span className="italic">Success Story</span>
-          </h2>
-          <p className="text-[#F5F0E8]/65 mb-10 font-sans text-[14px] leading-relaxed max-w-xl mx-auto">
-            Apply to Merryland Montessori and High School today and start your journey toward excellence.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-3 px-10 py-4 border-2 border-[#D4A853] text-[#D4A853] text-[11px] tracking-[0.25em] uppercase font-sans hover:bg-[#D4A853] hover:text-[#0E0E0E] transition-all duration-300"
-          >
-            Learn More About Admissions
-          </Link>
-        </div>
-      </section>
+      <CTASection
+        title={<>Be Part of Our<br /><span className="italic">Success Story</span></>}
+        body="Apply to Merryland Montessori and High School today and start your journey toward excellence."
+      >
+        <Link
+          href="/contact"
+          className="inline-flex items-center gap-3 px-10 py-4 border-2 border-[#D4A853] text-[#D4A853] text-[11px] tracking-[0.25em] uppercase font-sans hover:bg-[#D4A853] hover:text-[#0E0E0E] transition-all duration-300"
+        >
+          Learn More About Admissions
+        </Link>
+      </CTASection>
 
     </main>
   );

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { PageHeader } from '@/components/ui/page-header';
 import { SectionHeader } from '@/components/ui/section-header';
 import { StatsBar } from '@/components/ui/stats-bar';
+import { CTASection } from '@/components/ui/cta-section';
 
 export default function AboutPage() {
   const programs = [
@@ -130,34 +131,23 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-[#C41E3A] py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        <div className="absolute inset-0 [background:linear-gradient(135deg,#A8182F_0%,#C41E3A_50%,#D42545_100%)]" />
-        <div className="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-white/[0.04]" />
-        <div className="relative max-w-3xl mx-auto text-center">
-          <h2 className="font-display text-5xl md:text-6xl font-light text-[#F5F0E8] leading-tight mb-6">
-            Ready to Join Our<br />
-            <span className="italic">Community?</span>
-          </h2>
-          <p className="text-[#F5F0E8]/65 mb-10 font-sans text-[14px] leading-relaxed max-w-xl mx-auto">
-            Discover how Merryland Montessori and High School can help your child thrive academically and personally.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/incoming-events"
-              className="inline-flex items-center justify-center px-9 py-4 bg-[#F5F0E8] text-[#0E0E0E] text-[11px] tracking-[0.25em] uppercase font-sans font-medium hover:bg-white transition-all duration-300"
-            >
-              Explore Events
-            </Link>
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center px-9 py-4 border-2 border-[#D4A853] text-[#D4A853] text-[11px] tracking-[0.25em] uppercase font-sans hover:bg-[#D4A853] hover:text-[#0E0E0E] transition-all duration-300"
-            >
-              Contact Us
-            </Link>
-          </div>
-        </div>
-      </section>
+      <CTASection
+        title={<>Ready to Join Our<br /><span className="italic">Community?</span></>}
+        body="Discover how Merryland Montessori and High School can help your child thrive academically and personally."
+      >
+        <Link
+          href="/incoming-events"
+          className="inline-flex items-center justify-center px-9 py-4 bg-[#F5F0E8] text-[#0E0E0E] text-[11px] tracking-[0.25em] uppercase font-sans font-medium hover:bg-white transition-all duration-300"
+        >
+          Explore Events
+        </Link>
+        <Link
+          href="/contact"
+          className="inline-flex items-center justify-center px-9 py-4 border-2 border-[#D4A853] text-[#D4A853] text-[11px] tracking-[0.25em] uppercase font-sans hover:bg-[#D4A853] hover:text-[#0E0E0E] transition-all duration-300"
+        >
+          Contact Us
+        </Link>
+      </CTASection>
 
     </main>
   );

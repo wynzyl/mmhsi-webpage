@@ -4,6 +4,7 @@ import { mathScience as mathScienceTable } from '@/db/schema';
 import { PageHeader } from '@/components/ui/page-header';
 import { SectionHeader } from '@/components/ui/section-header';
 import { StatsBar } from '@/components/ui/stats-bar';
+import { CTASection } from '@/components/ui/cta-section';
 
 export const dynamic = 'force-dynamic';
 
@@ -126,23 +127,14 @@ export default async function MathScience() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-[#C41E3A] py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        <div className="absolute inset-0 [background:linear-gradient(135deg,#A8182F_0%,#C41E3A_100%)]" />
-        <div className="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-white/[0.04]" />
-        <div className="relative max-w-3xl mx-auto text-center">
-          <h2 className="font-display text-4xl md:text-5xl font-light text-[#F5F0E8] leading-tight mb-6">
-            Excellence in Mathematics<br />
-            <span className="italic">&amp; Science</span>
-          </h2>
-          <p className="text-[#F5F0E8]/65 mb-10 font-sans text-[14px] leading-relaxed max-w-xl mx-auto">
-            These achievements reflect our commitment to developing critical thinking, problem-solving skills, and a deep appreciation for mathematics and science in every student.
-          </p>
-          <div className="inline-block px-8 py-3 border border-[#F5F0E8]/30 text-[#F5F0E8]/80 text-[11px] tracking-[0.3em] uppercase font-sans">
-            Merryland: Where Excellence Begins
-          </div>
+      <CTASection
+        title={<>Excellence in Mathematics<br /><span className="italic">&amp; Science</span></>}
+        body="These achievements reflect our commitment to developing critical thinking, problem-solving skills, and a deep appreciation for mathematics and science in every student."
+      >
+        <div className="inline-block px-8 py-3 border border-[#F5F0E8]/30 text-[#F5F0E8]/80 text-[11px] tracking-[0.3em] uppercase font-sans">
+          Merryland: Where Excellence Begins
         </div>
-      </section>
+      </CTASection>
 
     </main>
   );

@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { NAV_LINKS } from '@/lib/navigation';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,19 +14,6 @@ export default function Header() {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
-
-  const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/about', label: 'About Us' },
-    { href: '/directors-corner', label: "Director's Corner" },
-    { href: '/board-passers', label: 'Board Passers' },
-    { href: '/graduates', label: 'Graduates' },
-    { href: '/activities', label: 'Activities' },
-    { href: '/math-science', label: 'Math & Science' },
-    { href: '/facilities', label: 'Facilities' },
-    { href: '/incoming-events', label: 'Events' },
-    { href: '/contact', label: 'Contact' },
-  ];
 
   return (
     <header
@@ -60,7 +48,7 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => (
+            {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -95,7 +83,7 @@ export default function Header() {
           }`}
         >
           <div className="border-t border-white/5 pt-2">
-            {navLinks.map((link) => (
+            {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}

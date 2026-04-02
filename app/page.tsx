@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { StatsBar } from '@/components/ui/stats-bar';
+import { SectionHeader } from '@/components/ui/section-header';
 
 export default function Home() {
   return (
@@ -137,30 +139,12 @@ export default function Home() {
       {/* ══════════════════════════════════════════
           2. STATS BAR
       ══════════════════════════════════════════ */}
-      <section className="bg-[#161616] border-y border-white/[0.04] py-14 px-4">
-        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4">
-          {[
-            { number: '26+', label: 'Years of Excellence' },
-            { number: '600+', label: 'Students Enrolled' },
-            { number: '3,000+', label: 'Board Passers' },
-            { number: '5,000+', label: 'Graduates' },
-          ].map((stat, i) => (
-            <div
-              key={i}
-              className={`text-center px-6 py-6 ${
-                i < 3 ? 'border-r border-[#C41E3A]/15' : ''
-              }`}
-            >
-              <div className="font-display text-4xl md:text-5xl font-light text-[#D4A853] mb-2 leading-none">
-                {stat.number}
-              </div>
-              <div className="text-[9px] text-[#F5F0E8]/35 tracking-[0.25em] uppercase font-sans">
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <StatsBar stats={[
+        { number: '26+', label: 'Years of Excellence' },
+        { number: '600+', label: 'Students Enrolled' },
+        { number: '3,000+', label: 'Board Passers' },
+        { number: '5,000+', label: 'Graduates' },
+      ]} />
 
       {/* ══════════════════════════════════════════
           3. WHAT WE OFFER — Cards
@@ -168,20 +152,7 @@ export default function Home() {
       <section className="py-28 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
 
-          {/* Section Header */}
-          <div className="flex items-start gap-6 mb-16">
-            <span className="font-display text-7xl font-light text-[#C41E3A]/15 leading-none select-none mt-1">
-              01
-            </span>
-            <div>
-              <p className="text-[10px] text-[#D4A853] tracking-[0.3em] uppercase font-sans mb-2">
-                Our Programs
-              </p>
-              <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#F5F0E8] leading-tight">
-                What We Offer
-              </h2>
-            </div>
-          </div>
+          <SectionHeader number="01" tag="Our Programs" title="What We Offer" />
 
           {/* Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -356,20 +327,7 @@ export default function Home() {
       <section className="py-28 px-4 sm:px-6 lg:px-8 border-t border-white/[0.04]">
         <div className="max-w-7xl mx-auto">
 
-          {/* Section Header */}
-          <div className="flex items-start gap-6 mb-16">
-            <span className="font-display text-7xl font-light text-[#C41E3A]/15 leading-none select-none mt-1">
-              03
-            </span>
-            <div>
-              <p className="text-[10px] text-[#D4A853] tracking-[0.3em] uppercase font-sans mb-2">
-                Recognition
-              </p>
-              <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#F5F0E8] leading-tight">
-                Our Achievements
-              </h2>
-            </div>
-          </div>
+          <SectionHeader number="03" tag="Recognition" title="Our Achievements" />
 
           {/* Achievement Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/[0.04]">

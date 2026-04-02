@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { FOOTER_QUICK_LINKS, FOOTER_EXPLORE_LINKS } from '@/lib/navigation';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -33,13 +34,7 @@ export default function Footer() {
               Quick Links
             </h4>
             <ul className="space-y-3 font-sans">
-              {[
-                { href: '/about', label: 'About Us' },
-                { href: '/directors-corner', label: "Director's Corner" },
-                { href: '/news', label: 'News & Updates' },
-                { href: '/alumni', label: 'Alumni' },
-                { href: '/contact', label: 'Contact Us' },
-              ].map((link) => (
+              {FOOTER_QUICK_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -58,14 +53,7 @@ export default function Footer() {
               Explore
             </h4>
             <ul className="space-y-3 font-sans">
-              {[
-                { href: '/graduates', label: 'Graduates' },
-                { href: '/board-passers', label: 'Board Passers' },
-                { href: '/facilities', label: 'Facilities' },
-                { href: '/activities', label: 'Activities' },
-                { href: '/math-science', label: 'Math & Science' },
-                { href: '/incoming-events', label: 'Incoming Events' },
-              ].map((link) => (
+              {FOOTER_EXPLORE_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}

@@ -1,6 +1,8 @@
 'use client'
 import { useState } from 'react'
 import type { FieldConfig } from '@/lib/types'
+import { useFormSubmit } from '@/hooks/use-form-submit'
+import { ADMIN_INPUT, ADMIN_BTN_PRIMARY, ADMIN_BTN_SECONDARY } from '@/lib/styles'
 import ImageUploader from './ImageUploader'
 
 interface Props {
@@ -16,12 +18,12 @@ export default function DynamicForm({ fields, defaultValues, collection, onSubmi
   const [values, setValues] = useState<Record<string, unknown>>(() => {
     const init: Record<string, unknown> = {}
     for (const f of fields) {
-      init[f.name] = defaultValues?.[f.name] ?? (f.type === 'number' ? '' : '')
+      init[f.name] = defaultValues?.[f.name] ?? ''
     }
     return init
   })
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
+
+  const { run, loading, error } = useFormSubmit()
 
   function set(name: string, value: unknown) {
     setValues(prev => ({ ...prev, [name]: value }))
@@ -29,19 +31,13 @@ export default function DynamicForm({ fields, defaultValues, collection, onSubmi
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    setError('')
-    setLoading(true)
-    try {
+    await run(async () => {
       const data: Record<string, unknown> = {}
       for (const f of fields) {
         data[f.name] = f.type === 'number' ? Number(values[f.name]) : values[f.name]
       }
       await onSubmit(data)
-    } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : 'An error occurred')
-    } finally {
-      setLoading(false)
-    }
+    })
   }
 
   return (
@@ -57,7 +53,7 @@ export default function DynamicForm({ fields, defaultValues, collection, onSubmi
               onChange={e => set(field.name, e.target.value)}
               required={field.required}
               rows={4}
-              className="w-full bg-[#1a1a1a] border border-white/[0.08] text-[#F5F0E8] text-[13px] px-3 py-2.5 font-sans focus:outline-none focus:border-[#C41E3A]/40 resize-none"
+              className={`${ADMIN_INPUT} resize-none`}
             />
           ) : field.type === 'image' ? (
             <ImageUploader
@@ -71,7 +67,7 @@ export default function DynamicForm({ fields, defaultValues, collection, onSubmi
               value={String(values[field.name] ?? '')}
               onChange={e => set(field.name, e.target.value)}
               required={field.required}
-              className="w-full bg-[#1a1a1a] border border-white/[0.08] text-[#F5F0E8] text-[13px] px-3 py-2.5 font-sans focus:outline-none focus:border-[#C41E3A]/40"
+              className={ADMIN_INPUT}
             />
           )}
         </div>
@@ -82,18 +78,10 @@ export default function DynamicForm({ fields, defaultValues, collection, onSubmi
       )}
 
       <div className="flex items-center gap-3 pt-2">
-        <button
-          type="submit"
-          disabled={loading}
-          className="px-6 py-2.5 bg-[#C41E3A] text-[#F5F0E8] text-[11px] tracking-[0.2em] uppercase font-sans hover:bg-[#a01830] transition-colors disabled:opacity-50"
-        >
+        <button type="submit" disabled={loading} className={ADMIN_BTN_PRIMARY}>
           {loading ? 'Saving…' : submitLabel}
         </button>
-        <button
-          type="button"
-          onClick={onCancel}
-          className="px-6 py-2.5 border border-white/10 text-[#F5F0E8]/50 text-[11px] tracking-[0.2em] uppercase font-sans hover:text-[#F5F0E8] hover:border-white/20 transition-colors"
-        >
+        <button type="button" onClick={onCancel} className={ADMIN_BTN_SECONDARY}>
           Cancel
         </button>
       </div>
